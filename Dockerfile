@@ -1,4 +1,4 @@
-FROM alpine:3.16 AS builder
+FROM alpine:3.18 AS builder
 
 RUN apk add git g++ meson ninja libssh-dev curl-dev \
  && git clone -b master --single-branch https://github.com/Rouji/nc2p.git /opt/nc2p \
@@ -6,7 +6,7 @@ RUN apk add git g++ meson ninja libssh-dev curl-dev \
  && git clone -b master --single-branch https://github.com/Rouji/ssh2p.git /opt/ssh2p \
  && cd /opt/ssh2p && meson build && ninja -C build
 
-FROM alpine:3.16
+FROM alpine:3.18
 
 COPY entry.sh /entry.sh
 COPY supervisord.conf /etc/supervisord.conf
